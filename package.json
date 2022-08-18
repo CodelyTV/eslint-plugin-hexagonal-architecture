@@ -1,0 +1,23 @@
+{
+  "name": "eslint-plugin-hexagonal-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "test": "mocha tests --recursive"
+  },
+  "peerDependencies": {
+    "eslint": "*"
+  },
+  "author": "Codely",
+  "license": "SEE LICENCE IN LICENCE",
+  "keywords": [
+    "eslint"
+  ],
+  "devDependencies": {
+    "eslint-config-codely": "^1.1.0",
+    "mocha": "^10.0.0"
+  }
+}
