@@ -2,11 +2,12 @@
   "name": "eslint-plugin-hexagonal-architecture",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "eslint --fix",
-    "test": "mocha tests --recursive"
+    "lint:fix": "eslint . --fix",
+    "test": "npm run build && mocha tests --recursive",
+    "build": "tsc"
   },
   "peerDependencies": {
     "eslint": "*"
@@ -17,7 +18,9 @@
     "eslint"
   ],
   "devDependencies": {
+    "@types/eslint": "^8.4.5",
     "eslint-config-codely": "^1.1.0",
-    "mocha": "^10.0.0"
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4"
   }
 }

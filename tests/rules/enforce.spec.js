@@ -1,6 +1,6 @@
 "use strict";
 
-const rule = require("../../src/rules/enforce");
+const rule = require("../../dist/rules/enforce");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester();
@@ -8,14 +8,24 @@ const ruleTester = new RuleTester();
 ruleTester.run("enforce", rule, {
   valid: [
     {
-      code: "",
+      code: "good-hexagonal/application/UseCase.js",
       filename: "/Users/codely/tests/paths/good-hexagonal/application/UseCase.js",
+      options: [{ rootPath: "tests/paths/good-hexagonal" }],
+    },
+    {
+      code: "good-hexagonal/domain/User.js",
+      filename: "/Users/codely/tests/paths/good-hexagonal/domain/User.js",
+      options: [{ rootPath: "tests/paths/good-hexagonal" }],
+    },
+    {
+      code: "good-hexagonal/infrastructure/RedisUserRepository.js",
+      filename: "/Users/codely/tests/paths/good-hexagonal/infrastructure/RedisUserRepository.js",
       options: [{ rootPath: "tests/paths/good-hexagonal" }],
     },
   ],
   invalid: [
     {
-      code: "",
+      code: "bad-hexagonal/patatas/UseCase.js",
       filename: "/Users/codely/tests/paths/bad-hexagonal/patatas/UseCase.js",
       options: [{ rootPath: "tests/paths/bad-hexagonal" }],
       errors: [
