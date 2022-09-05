@@ -7,7 +7,7 @@ type ImportDeclarationNode = {
   source: { value: string };
 };
 
-export type GeneralNode = { body: ImportDeclarationNode[] };
+export type GeneralNode = { body: ImportDeclarationNode[] | undefined };
 
 type HexagonalLayers = "application" | "domain" | "infrastructure";
 
@@ -16,17 +16,19 @@ export class HexagonalArchitectureDependencyRuleEnforcer {
   private readonly dependenciesWildcard = {
     application: ["application", "domain"],
     domain: ["domain"],
-    infrastructure: ["infrastructure", "domain"],
+    infrastructure: ["application", "domain", "infrastructure"],
   };
 
   public enforce(context: RuleContext, node: GeneralNode): void {
     const nodeBody = node["body"];
 
-    nodeBody
-      .filter((value) => value.type === "ImportDeclaration")
-      .forEach((value) => {
-        this.ensureImportIsValid(value.source.value, context, value as TSESTree.Node);
-      });
+    if (nodeBody !== undefined) {
+      nodeBody
+        .filter((value) => value.type === "ImportDeclaration")
+        .forEach((value) => {
+          this.ensureImportIsValid(value.source.value, context, value as TSESTree.Node);
+        });
+    }
   }
 
   private ensureImportIsValid(importText: string, context: RuleContext, node: TSESTree.Node): void {

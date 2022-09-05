@@ -63,6 +63,11 @@ ruleTester.run("enforce", rule, {
         `${__dirname}/paths/good-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts`
       ),
     },
+    {
+      name: "♻️ async import is ignored",
+      filename: `${__dirname}/paths/regression/infrastructure/AsyncImport.ts`,
+      code: readFile(`${__dirname}/paths/regression/infrastructure/AsyncImport.ts`),
+    },
   ],
   invalid: [
     {
@@ -93,14 +98,6 @@ ruleTester.run("enforce", rule, {
         { messageId: "import-not-follow-hexagonal" },
         { messageId: "import-not-follow-hexagonal" },
       ],
-    },
-    {
-      name: "🔀 repository implementation importing from application",
-      filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts`,
-      code: readFile(
-        `${__dirname}/paths/bad-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts`
-      ),
-      errors: [{ messageId: "import-not-follow-hexagonal" }],
     },
   ],
 });
