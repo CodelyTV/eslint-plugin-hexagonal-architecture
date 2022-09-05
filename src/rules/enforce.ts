@@ -1,10 +1,12 @@
 import { TSESLint } from "@typescript-eslint/utils";
 import { TSESTree } from "@typescript-eslint/utils/dist/ts-estree";
 
-import { HexagonalArchitectureEnforcer } from "../common/HexagonalArchitectureEnforcer";
+import { HexagonalArchitectureDependencyRuleEnforcer } from "../common/HexagonalArchitectureDependencyRuleEnforcer";
+import { HexagonalArchitectureFolderEnforcer } from "../common/HexagonalArchitectureFolderEnforcer";
 import { createRule } from "../utils/createRule";
 
-const enforcer = new HexagonalArchitectureEnforcer();
+const folderEnforcer = new HexagonalArchitectureFolderEnforcer();
+const dependencyRuleEnforcer = new HexagonalArchitectureDependencyRuleEnforcer();
 
 type MessageIds = "folder-not-follow-hexagonal" | "import-not-follow-hexagonal";
 type Options = unknown;
@@ -34,7 +36,8 @@ const rule = createRule<Options[], MessageIds>({
   create(context: RuleContext) {
     return {
       Program(node: TSESTree.Node) {
-        enforcer.enforce(context, node);
+        folderEnforcer.enforce(context, node);
+        dependencyRuleEnforcer.enforce(context, node);
       },
     };
   },
