@@ -1,0 +1,21 @@
+name: CI
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: 🚀 Test and build
+    timeout-minutes: 15
+    steps:
+      - name: 👍 Checkout
+        uses: actions/checkout@v2
+
+      - name: 📥 Install Dependencies
+        run: npm install
+
+      - name: 💅 Lint
+        run: npm run lint
+
+      - name: ✅ Test
+        run: npm run test

@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "npm run build && mocha tests --recursive",
+    "test": "npx jest --runInBand --color --reporters=default --no-cache --coverage=false --silent=false -c jest.config.ts",
     "build": "tsc"
   },
   "peerDependencies": {
@@ -19,8 +19,19 @@
   ],
   "devDependencies": {
     "@types/eslint": "^8.4.5",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^18.7.15",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
     "eslint-config-codely": "^1.1.0",
-    "mocha": "^10.0.0",
+    "jest": "^28.1.3",
+    "jest-junit": "^14.0.1",
+    "ts-jest": "^28.0.8",
+    "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@typescript-eslint/utils": "^5.36.1",
+    "eslint-module-utils": "^2.7.4"
   }
 }

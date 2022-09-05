@@ -1,44 +1,52 @@
-import { Rule } from "eslint";
-import * as ESTree from "estree";
-import RuleContext = Rule.RuleContext;
+import { TSESLint } from "@typescript-eslint/utils";
+import { TSESTree } from "@typescript-eslint/utils/dist/ts-estree";
 
-interface Context extends RuleContext {
-  options: {
-    rootPath: string;
-  }[];
-}
+import {
+  GeneralNode,
+  HexagonalArchitectureDependencyRuleEnforcer,
+} from "../common/HexagonalArchitectureDependencyRuleEnforcer";
+import { HexagonalArchitectureFolderEnforcer } from "../common/HexagonalArchitectureFolderEnforcer";
+import { createRule } from "../utils/createRule";
 
-module.exports = {
+const folderEnforcer = new HexagonalArchitectureFolderEnforcer();
+const dependencyRuleEnforcer = new HexagonalArchitectureDependencyRuleEnforcer();
+
+type MessageIds = "folder-not-follow-hexagonal" | "import-not-follow-hexagonal";
+type Options = unknown;
+// type Options = {
+//   rootPath: string;
+// };
+export type RuleContext = Readonly<TSESLint.RuleContext<MessageIds, Options[]>>;
+
+const rule = createRule<Options[], MessageIds>({
+  name: "enforce",
   meta: {
-    schema: [
-      {
-        type: "object",
-        properties: {
-          rootPath: {
-            type: "string",
-          },
-        },
-        additionalProperties: false,
-      },
-    ],
+    docs: {
+      description: "Enforce Hexagonal Architecture on a given path",
+      recommended: "error",
+      requiresTypeChecking: false,
+    },
+    messages: {
+      "folder-not-follow-hexagonal":
+        "The folder containing this file does not follow the Hexagonal Architecture",
+      "import-not-follow-hexagonal":
+        "This import is violating the Hexagonal Architecture dependency rule",
+    },
+    type: "problem",
+    schema: {},
   },
-  create(context: Context) {
+  defaultOptions: [],
+  create(context: RuleContext) {
     return {
-      Program(node: ESTree.Node) {
-        const filename = context.getFilename();
-        const rootPath = context.options[0].rootPath;
+      "Program, ImportExpression"(node: TSESTree.Node) {
+        folderEnforcer.enforce(context, node);
 
-        const hexagonalFolderPath = filename.split(rootPath)[1];
-
-        const hexagonalFolder = hexagonalFolderPath.split("/")[1];
-
-        if (!["application", "domain", "infrastructure"].includes(hexagonalFolder)) {
-          context.report({
-            node,
-            message: `Folder '${hexagonalFolder}' in path '${hexagonalFolderPath}' does not match the Hexagonal Architecture naming convention`,
-          });
+        if (folderEnforcer.hasCorrectFolderStructure(context.getFilename())) {
+          dependencyRuleEnforcer.enforce(context, node as GeneralNode);
         }
       },
     };
   },
-};
+});
+
+export default rule;
