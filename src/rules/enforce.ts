@@ -1,36 +1,43 @@
-import { Rule } from "eslint";
-import * as ESTree from "estree";
+import { TSESLint } from "@typescript-eslint/utils";
+import { TSESTree } from "@typescript-eslint/utils/dist/ts-estree";
 
 import { HexagonalArchitectureEnforcer } from "../common/HexagonalArchitectureEnforcer";
-import RuleContext = Rule.RuleContext;
-
-export interface Context extends RuleContext {
-  options: {
-    rootPath: string;
-  }[];
-}
+import { createRule } from "../utils/createRule";
 
 const enforcer = new HexagonalArchitectureEnforcer();
 
-module.exports = {
+type MessageIds = "folder-not-follow-hexagonal" | "import-not-follow-hexagonal";
+type Options = unknown;
+// type Options = {
+//   rootPath: string;
+// };
+export type RuleContext = Readonly<TSESLint.RuleContext<MessageIds, Options[]>>;
+
+const rule = createRule<Options[], MessageIds>({
+  name: "enforce",
   meta: {
-    schema: [
-      {
-        type: "object",
-        properties: {
-          rootPath: {
-            type: "string",
-          },
-        },
-        additionalProperties: false,
-      },
-    ],
+    docs: {
+      description: "Enforce Hexagonal Architecture on a given path",
+      recommended: "error",
+      requiresTypeChecking: false,
+    },
+    messages: {
+      "folder-not-follow-hexagonal":
+        "The folder containing this file does not follow the Hexagonal Architecture",
+      "import-not-follow-hexagonal":
+        "This import is violating the Hexagonal Architecture dependency rule",
+    },
+    type: "problem",
+    schema: {},
   },
-  create(context: Context) {
+  defaultOptions: [],
+  create(context: RuleContext) {
     return {
-      Program(node: ESTree.Node) {
+      Program(node: TSESTree.Node) {
         enforcer.enforce(context, node);
       },
     };
   },
-};
+});
+
+export default rule;

@@ -1,5 +1,9 @@
-module.exports = {
+import enforce from "./rules/enforce";
+
+const config = {
   rules: {
-    enforce: require("./rules/enforce"),
+    enforce,
   },
 };
+
+export = config;
