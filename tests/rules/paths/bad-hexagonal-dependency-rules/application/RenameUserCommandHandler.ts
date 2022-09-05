@@ -1,5 +1,5 @@
 import { UserRenamer } from "./UserRenamer"
 
 export class RenameUserCommandHandler {
-  constructor() {}
+  constructor(private readonly renamer: UserRenamer) {}
 }

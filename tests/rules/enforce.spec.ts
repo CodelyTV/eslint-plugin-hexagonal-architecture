@@ -15,101 +15,92 @@ function readFile(path: string): string {
 
 ruleTester.run("enforce", rule, {
   valid: [
-    // {
-    //   name: "a folder named application",
-    //   filename: `${__dirname}/paths/good-hexagonal-folder-structure/application/UseCase.js`,
-    //   code: readFile(`${__dirname}/paths/good-hexagonal-folder-structure/application/UseCase.js`),
-    // },
-    // {
-    //   name: "a folder named domain",
-    //   filename: `${__dirname}/paths/good-hexagonal-folder-structure/domain/User.js`,
-    //   code: readFile(`${__dirname}/paths/good-hexagonal-folder-structure/domain/User.js`),
-    // },
-    // {
-    //   name: "a folder named infrastructure",
-    //   filename: `${__dirname}/paths/good-hexagonal-folder-structure/infrastructure/RedisUserRepository.js`,
-    //   code: readFile(
-    //     `${__dirname}/paths/good-hexagonal-folder-structure/infrastructure/RedisUserRepository.js`
-    //   ),
-    // },
     {
-      name: "command handler importing an use case",
+      name: "📁 folder named application",
+      filename: `${__dirname}/paths/good-hexagonal-folder-structure/application/UseCase.js`,
+      code: readFile(`${__dirname}/paths/good-hexagonal-folder-structure/application/UseCase.js`),
+    },
+    {
+      name: "📁 folder named domain",
+      filename: `${__dirname}/paths/good-hexagonal-folder-structure/domain/User.js`,
+      code: readFile(`${__dirname}/paths/good-hexagonal-folder-structure/domain/User.js`),
+    },
+    {
+      name: "📁 folder named infrastructure",
+      filename: `${__dirname}/paths/good-hexagonal-folder-structure/infrastructure/RedisUserRepository.js`,
+      code: readFile(
+        `${__dirname}/paths/good-hexagonal-folder-structure/infrastructure/RedisUserRepository.js`
+      ),
+    },
+    {
+      name: "🔀 command handler importing an use case",
       filename: `${__dirname}/paths/good-hexagonal-dependency-rules/application/RenameUserCommandHandler.ts`,
       code: readFile(
         `${__dirname}/paths/good-hexagonal-dependency-rules/application/RenameUserCommandHandler.ts`
       ),
     },
-    // {
-    //   code: "good-hexagonal-dependency-rules/application/UserRenamer.ts",
-    //   filename: `${__dirname}/paths/good-hexagonal-dependency-rules/application/UserRenamer.ts`,
-    //   options: [{ rootPath: "paths/good-hexagonal-dependency-rules" }],
-    // },
-    // {
-    //   code: "good-hexagonal-dependency-rules/domain/User.ts",
-    //   filename: `${__dirname}/paths/good-hexagonal-dependency-rules/domain/User.ts`,
-    //   options: [{ rootPath: "paths/good-hexagonal-dependency-rules" }],
-    // },
-    // {
-    //   code: "good-hexagonal-dependency-rules/domain/UserRepository.ts",
-    //   filename: `${__dirname}/paths/good-hexagonal-dependency-rules/domain/UserRepository.ts`,
-    //   options: [{ rootPath: "paths/good-hexagonal-dependency-rules" }],
-    // },
+    {
+      name: "🔀 use case importing a repository interface",
+      filename: `${__dirname}/paths/good-hexagonal-dependency-rules/application/UserRenamer.ts`,
+      code: readFile(
+        `${__dirname}/paths/good-hexagonal-dependency-rules/application/UserRenamer.ts`
+      ),
+    },
+    {
+      name: "🔀 aggregate not importing anything",
+      filename: `${__dirname}/paths/good-hexagonal-dependency-rules/domain/User.ts`,
+      code: readFile(`${__dirname}/paths/good-hexagonal-dependency-rules/domain/User.ts`),
+    },
+    {
+      name: "🔀 repository interface importing an aggregate",
+      filename: `${__dirname}/paths/good-hexagonal-dependency-rules/domain/UserRepository.ts`,
+      code: readFile(`${__dirname}/paths/good-hexagonal-dependency-rules/domain/UserRepository.ts`),
+    },
+    {
+      name: "🔀 repository implementation importing an aggregate and repository interface",
+      filename: `${__dirname}/paths/good-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts`,
+      code: readFile(
+        `${__dirname}/paths/good-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts`
+      ),
+    },
   ],
   invalid: [
     {
-      name: "a folder named patatas",
+      name: "📁 folder named patatas",
       filename: `${__dirname}/paths/bad-hexagonal-folder-structure/patatas/UseCase.js`,
       code: readFile(`${__dirname}/paths/bad-hexagonal-folder-structure/patatas/UseCase.js`),
+      errors: [{ messageId: "folder-not-follow-hexagonal" }],
+    },
+    {
+      name: "🔀 application importing infrastructure",
+      filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/application/UserRenamer.ts`,
+      code: readFile(
+        `${__dirname}/paths/bad-hexagonal-dependency-rules/application/UserRenamer.ts`
+      ),
+      errors: [{ messageId: "import-not-follow-hexagonal" }],
+    },
+    {
+      name: "🔀 aggregate importing from application",
+      filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/domain/User.ts`,
+      code: readFile(`${__dirname}/paths/bad-hexagonal-dependency-rules/domain/User.ts`),
+      errors: [{ messageId: "import-not-follow-hexagonal" }],
+    },
+    {
+      name: "🔀 repository interface importing from application and infrastructure",
+      filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/domain/UserRepository.ts`,
+      code: readFile(`${__dirname}/paths/bad-hexagonal-dependency-rules/domain/UserRepository.ts`),
       errors: [
-        {
-          messageId: "folder-not-follow-hexagonal",
-        },
+        { messageId: "import-not-follow-hexagonal" },
+        { messageId: "import-not-follow-hexagonal" },
       ],
     },
-    // {
-    //   name: "application importing infrastructure",
-    //   code: readFile(
-    //     `${__dirname}/paths/bad-hexagonal-dependency-rules/application/UserRenamer.ts`
-    //   ),
-    //   filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/application/UserRenamer.ts`,
-    //   errors: [
-    //     {
-    //       messageId: "folder-not-follow-hexagonal",
-    //     },
-    //   ],
-    // },
-    // {
-    //   code: "bad-hexagonal-dependency-rules/domain/User.ts",
-    //   filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/domain/User.ts`,
-    //   options: [{ rootPath: "paths/bad-hexagonal-dependency-rules" }],
-    //   errors: [
-    //     {
-    //       message:
-    //         "",
-    //     },
-    //   ],
-    // },
-    // {
-    //   code: "bad-hexagonal-dependency-rules/domain/UserRepository.ts",
-    //   filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/domain/UserRepository.ts`,
-    //   options: [{ rootPath: "paths/bad-hexagonal-dependency-rules" }],
-    //   errors: [
-    //     {
-    //       message:
-    //         "",
-    //     },
-    //   ],
-    // },
-    // {
-    //   code: "bad-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts",
-    //   filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts`,
-    //   options: [{ rootPath: "paths/bad-hexagonal-dependency-rules" }],
-    //   errors: [
-    //     {
-    //       message:
-    //         "",
-    //     },
-    //   ],
-    // },
+    {
+      name: "🔀 repository implementation importing from application",
+      filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts`,
+      code: readFile(
+        `${__dirname}/paths/bad-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts`
+      ),
+      errors: [{ messageId: "import-not-follow-hexagonal" }],
+    },
   ],
 });

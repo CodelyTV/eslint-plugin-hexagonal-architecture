@@ -1,7 +1,10 @@
-import { AST_NODE_TYPES, TSESLint } from "@typescript-eslint/utils";
+import { TSESLint } from "@typescript-eslint/utils";
 import { TSESTree } from "@typescript-eslint/utils/dist/ts-estree";
 
-import { HexagonalArchitectureDependencyRuleEnforcer } from "../common/HexagonalArchitectureDependencyRuleEnforcer";
+import {
+  GeneralNode,
+  HexagonalArchitectureDependencyRuleEnforcer,
+} from "../common/HexagonalArchitectureDependencyRuleEnforcer";
 import { HexagonalArchitectureFolderEnforcer } from "../common/HexagonalArchitectureFolderEnforcer";
 import { createRule } from "../utils/createRule";
 
@@ -36,20 +39,10 @@ const rule = createRule<Options[], MessageIds>({
   create(context: RuleContext) {
     return {
       "Program, ImportExpression"(node: TSESTree.Node) {
-        console.log("node", node);
-        switch (node.type) {
-          case AST_NODE_TYPES.Program:
-            folderEnforcer.enforce(context, node);
-            break;
+        folderEnforcer.enforce(context, node);
 
-          case AST_NODE_TYPES.ImportDeclaration:
-            console.log("ENTRA");
-            dependencyRuleEnforcer.enforce(context, node);
-            break;
-
-          default:
-            // eslint-disable-next-line no-console
-            console.log("WTF");
+        if (folderEnforcer.hasCorrectFolderStructure(context.getFilename())) {
+          dependencyRuleEnforcer.enforce(context, node as GeneralNode);
         }
       },
     };
