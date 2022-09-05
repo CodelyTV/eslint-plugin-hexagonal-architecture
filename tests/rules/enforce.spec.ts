@@ -15,28 +15,30 @@ function readFile(path: string): string {
 
 ruleTester.run("enforce", rule, {
   valid: [
+    // {
+    //   name: "a folder named application",
+    //   filename: `${__dirname}/paths/good-hexagonal-folder-structure/application/UseCase.js`,
+    //   code: readFile(`${__dirname}/paths/good-hexagonal-folder-structure/application/UseCase.js`),
+    // },
+    // {
+    //   name: "a folder named domain",
+    //   filename: `${__dirname}/paths/good-hexagonal-folder-structure/domain/User.js`,
+    //   code: readFile(`${__dirname}/paths/good-hexagonal-folder-structure/domain/User.js`),
+    // },
+    // {
+    //   name: "a folder named infrastructure",
+    //   filename: `${__dirname}/paths/good-hexagonal-folder-structure/infrastructure/RedisUserRepository.js`,
+    //   code: readFile(
+    //     `${__dirname}/paths/good-hexagonal-folder-structure/infrastructure/RedisUserRepository.js`
+    //   ),
+    // },
     {
-      name: "a folder named application",
-      filename: `${__dirname}/paths/good-hexagonal-folder-structure/application/UseCase.js`,
-      code: readFile(`${__dirname}/paths/good-hexagonal-folder-structure/application/UseCase.js`),
-    },
-    {
-      name: "a folder named domain",
-      filename: `${__dirname}/paths/good-hexagonal-folder-structure/domain/User.js`,
-      code: readFile(`${__dirname}/paths/good-hexagonal-folder-structure/domain/User.js`),
-    },
-    {
-      name: "a folder named infrastructure",
-      filename: `${__dirname}/paths/good-hexagonal-folder-structure/infrastructure/RedisUserRepository.js`,
+      name: "command handler importing an use case",
+      filename: `${__dirname}/paths/good-hexagonal-dependency-rules/application/RenameUserCommandHandler.ts`,
       code: readFile(
-        `${__dirname}/paths/good-hexagonal-folder-structure/infrastructure/RedisUserRepository.js`
+        `${__dirname}/paths/good-hexagonal-dependency-rules/application/RenameUserCommandHandler.ts`
       ),
     },
-    // {
-    //   code: "good-hexagonal-dependency-rules/application/RenameUserCommandHandler.ts",
-    //   filename: `${__dirname}/paths/good-hexagonal-dependency-rules/application/RenameUserCommandHandler.ts`,
-    //   options: [{ rootPath: "paths/good-hexagonal-dependency-rules" }],
-    // },
     // {
     //   code: "good-hexagonal-dependency-rules/application/UserRenamer.ts",
     //   filename: `${__dirname}/paths/good-hexagonal-dependency-rules/application/UserRenamer.ts`,

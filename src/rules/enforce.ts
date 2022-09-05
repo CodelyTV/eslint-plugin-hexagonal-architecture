@@ -1,4 +1,4 @@
-import { TSESLint } from "@typescript-eslint/utils";
+import { AST_NODE_TYPES, TSESLint } from "@typescript-eslint/utils";
 import { TSESTree } from "@typescript-eslint/utils/dist/ts-estree";
 
 import { HexagonalArchitectureDependencyRuleEnforcer } from "../common/HexagonalArchitectureDependencyRuleEnforcer";
@@ -35,9 +35,22 @@ const rule = createRule<Options[], MessageIds>({
   defaultOptions: [],
   create(context: RuleContext) {
     return {
-      Program(node: TSESTree.Node) {
-        folderEnforcer.enforce(context, node);
-        dependencyRuleEnforcer.enforce(context, node);
+      "Program, ImportExpression"(node: TSESTree.Node) {
+        console.log("node", node);
+        switch (node.type) {
+          case AST_NODE_TYPES.Program:
+            folderEnforcer.enforce(context, node);
+            break;
+
+          case AST_NODE_TYPES.ImportDeclaration:
+            console.log("ENTRA");
+            dependencyRuleEnforcer.enforce(context, node);
+            break;
+
+          default:
+            // eslint-disable-next-line no-console
+            console.log("WTF");
+        }
       },
     };
   },
