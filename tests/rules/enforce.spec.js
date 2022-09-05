@@ -9,25 +9,25 @@ ruleTester.run("enforce", rule, {
   valid: [
     {
       code: "good-hexagonal/application/UseCase.js",
-      filename: "/Users/codely/tests/paths/good-hexagonal/application/UseCase.js",
-      options: [{ rootPath: "tests/paths/good-hexagonal" }],
+      filename: `${__dirname}/paths/good-hexagonal/application/UseCase.js`,
+      options: [{ rootPath: "paths/good-hexagonal" }],
     },
     {
       code: "good-hexagonal/domain/User.js",
-      filename: "/Users/codely/tests/paths/good-hexagonal/domain/User.js",
-      options: [{ rootPath: "tests/paths/good-hexagonal" }],
+      filename: `${__dirname}/paths/good-hexagonal/domain/User.js`,
+      options: [{ rootPath: "paths/good-hexagonal" }],
     },
     {
       code: "good-hexagonal/infrastructure/RedisUserRepository.js",
-      filename: "/Users/codely/tests/paths/good-hexagonal/infrastructure/RedisUserRepository.js",
-      options: [{ rootPath: "tests/paths/good-hexagonal" }],
+      filename: `${__dirname}/paths/good-hexagonal/infrastructure/RedisUserRepository.js`,
+      options: [{ rootPath: "paths/good-hexagonal" }],
     },
   ],
   invalid: [
     {
       code: "bad-hexagonal/patatas/UseCase.js",
-      filename: "/Users/codely/tests/paths/bad-hexagonal/patatas/UseCase.js",
-      options: [{ rootPath: "tests/paths/bad-hexagonal" }],
+      filename: `${__dirname}/paths/bad-hexagonal/patatas/UseCase.js`,
+      options: [{ rootPath: "paths/bad-hexagonal" }],
       errors: [
         {
           message:
