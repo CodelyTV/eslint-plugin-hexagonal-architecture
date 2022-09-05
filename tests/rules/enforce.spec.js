@@ -55,5 +55,49 @@ ruleTester.run("enforce", rule, {
         },
       ],
     },
+    // {
+    //   code: "bad-hexagonal-dependency-rules/application/UserRenamer.ts",
+    //   filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/application/UserRenamer.ts`,
+    //   options: [{ rootPath: "paths/bad-hexagonal-dependency-rules" }],
+    //   errors: [
+    //     {
+    //       message:
+    //         "",
+    //     },
+    //   ],
+    // },
+    // {
+    //   code: "bad-hexagonal-dependency-rules/domain/User.ts",
+    //   filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/domain/User.ts`,
+    //   options: [{ rootPath: "paths/bad-hexagonal-dependency-rules" }],
+    //   errors: [
+    //     {
+    //       message:
+    //         "",
+    //     },
+    //   ],
+    // },
+    // {
+    //   code: "bad-hexagonal-dependency-rules/domain/UserRepository.ts",
+    //   filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/domain/UserRepository.ts`,
+    //   options: [{ rootPath: "paths/bad-hexagonal-dependency-rules" }],
+    //   errors: [
+    //     {
+    //       message:
+    //         "",
+    //     },
+    //   ],
+    // },
+    // {
+    //   code: "bad-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts",
+    //   filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/infrastructure/RedisUserRepository.ts`,
+    //   options: [{ rootPath: "paths/bad-hexagonal-dependency-rules" }],
+    //   errors: [
+    //     {
+    //       message:
+    //         "",
+    //     },
+    //   ],
+    // },
   ],
 });
