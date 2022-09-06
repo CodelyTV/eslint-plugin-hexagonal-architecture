@@ -30,7 +30,7 @@ const rule = createRule<Options[], MessageIds>({
       "folder-not-follow-hexagonal":
         "The folder containing this file does not follow the Hexagonal Architecture structure",
       "import-not-follow-hexagonal":
-        "This import is violating the Hexagonal Architecture dependency rule ('{{ source }}' can't import '{{ target }}')",
+        "This import is violating the Hexagonal Architecture dependency rule ({{ source }} can't import {{ target }})",
     },
     type: "problem",
     schema: {},

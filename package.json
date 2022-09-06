@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "npx jest --runInBand --color --reporters=default --no-cache --coverage=false --silent=false -c jest.config.ts",
+    "test": "jest --color --reporters=default --no-cache --coverage=false --silent=false -c jest.config.ts",
     "build": "tsc"
   },
   "peerDependencies": {

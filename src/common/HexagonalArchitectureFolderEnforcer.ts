@@ -7,10 +7,7 @@ export class HexagonalArchitectureFolderEnforcer {
     const filename = context.getFilename();
 
     if (!this.hasCorrectFolderStructure(filename)) {
-      context.report({
-        node,
-        messageId: "folder-not-follow-hexagonal",
-      });
+      context.report({ node, messageId: "folder-not-follow-hexagonal" });
     }
   }
 
