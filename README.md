@@ -15,7 +15,7 @@
 
 <p align="center">
   A plugin that helps you to enforce hexagonal architecture best practises. Valid for your JavaScript or TypeScript projects 🤟
-  <a href="https://github.com/CodelyTV/eslint-config-codely/stargazers">Stars are welcome 😊</a>
+  <a href="https://github.com/CodelyTV/eslint-plugin-hexagonal-architecture/stargazers">Stars are welcome 😊</a>
 </p>
 
 ## 🤔 What it does

@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-hexagonal-architecture",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.2",
+  "description": "A plugin that helps you to enforce hexagonal architecture best practises.",
   "main": "dist/src/index.js",
   "scripts": {
     "lint": "eslint .",
