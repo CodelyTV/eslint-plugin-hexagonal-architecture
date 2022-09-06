@@ -6,16 +6,23 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "jest --color --reporters=default --no-cache --coverage=false --silent=false -c jest.config.ts",
+    "test": "jest -c jest.config.ts",
     "build": "tsc"
   },
   "peerDependencies": {
     "eslint": "*"
   },
-  "author": "Codely",
+  "author": "Codely (www.codely.com)",
   "license": "SEE LICENCE IN LICENCE",
   "keywords": [
-    "eslint"
+    "eslint",
+    "eslintplugin",
+    "hexagonal",
+    "architecture",
+    "codely",
+    "javascript",
+    "typescript",
+    "ecmascript"
   ],
   "devDependencies": {
     "@types/eslint": "^8.4.5",
