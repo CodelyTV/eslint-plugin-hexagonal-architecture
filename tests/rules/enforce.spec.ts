@@ -82,21 +82,49 @@ ruleTester.run("enforce", rule, {
       code: readFile(
         `${__dirname}/paths/bad-hexagonal-dependency-rules/application/UserRenamer.ts`
       ),
-      errors: [{ messageId: "import-not-follow-hexagonal" }],
+      errors: [
+        {
+          messageId: "import-not-follow-hexagonal",
+          data: {
+            source: "application",
+            target: "infrastructure",
+          },
+        },
+      ],
     },
     {
       name: "🔀 aggregate importing from application",
       filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/domain/User.ts`,
       code: readFile(`${__dirname}/paths/bad-hexagonal-dependency-rules/domain/User.ts`),
-      errors: [{ messageId: "import-not-follow-hexagonal" }],
+      errors: [
+        {
+          messageId: "import-not-follow-hexagonal",
+          data: {
+            source: "domain",
+            target: "application",
+          },
+        },
+      ],
     },
     {
       name: "🔀 repository interface importing from application and infrastructure",
       filename: `${__dirname}/paths/bad-hexagonal-dependency-rules/domain/UserRepository.ts`,
       code: readFile(`${__dirname}/paths/bad-hexagonal-dependency-rules/domain/UserRepository.ts`),
       errors: [
-        { messageId: "import-not-follow-hexagonal" },
-        { messageId: "import-not-follow-hexagonal" },
+        {
+          messageId: "import-not-follow-hexagonal",
+          data: {
+            source: "domain",
+            target: "application",
+          },
+        },
+        {
+          messageId: "import-not-follow-hexagonal",
+          data: {
+            source: "domain",
+            target: "infrastructure",
+          },
+        },
       ],
     },
   ],

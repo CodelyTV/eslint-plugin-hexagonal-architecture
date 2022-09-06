@@ -42,6 +42,10 @@ export class HexagonalArchitectureDependencyRuleEnforcer {
         context.report({
           node,
           messageId: "import-not-follow-hexagonal",
+          data: {
+            source: currentLayer,
+            target: forbiddenImport,
+          },
         });
       }
     });
