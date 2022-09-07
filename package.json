@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-hexagonal-architecture",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A plugin that helps you to enforce hexagonal architecture best practises.",
   "main": "dist/src/index.js",
   "scripts": {
@@ -40,5 +40,10 @@
   "dependencies": {
     "@typescript-eslint/utils": "^5.36.1",
     "eslint-module-utils": "^2.7.4"
+  },
+  "homepage": "https://github.com/CodelyTV/eslint-plugin-hexagonal-architecture#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodelyTV/eslint-plugin-hexagonal-architecture.git"
   }
 }

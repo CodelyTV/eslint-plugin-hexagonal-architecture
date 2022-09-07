@@ -35,7 +35,7 @@
 
 1. Install the dependency
    ```bash
-   npm install --save-dev eslint-config-codely
+   npm install --save-dev eslint-plugin-hexagonal-architecture
    ```
 2. Add the plugin to your `.eslintrc.js` file:
     ```js
