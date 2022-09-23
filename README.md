@@ -71,7 +71,7 @@ Publishing this package we are committing ourselves to the following code qualit
 ## 🔀 Related resources
 
 - [🔦 Linting en JavaScript y TypeScript](https://pro.codely.com/library/linting-en-javascript-y-typescript-188432/446893/about/): Used as a template to bootstrap this plugin
-- [Codely's ESLint + Prettier configuration](https://github.com/CodelyTV/eslint-config-codely): Opinionated linting configuration considering modern TypeScript best practices and providing consistency to your import statements. Valid for your JavaScript or TypeScript projects
+- [🤏 Codely's ESLint + Prettier configuration](https://github.com/CodelyTV/eslint-config-codely): Opinionated linting configuration considering modern TypeScript best practices and providing consistency to your import statements. Valid for your JavaScript or TypeScript projects
 
 Opinionated skeletons ready for different purposes:
 
