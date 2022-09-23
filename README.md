@@ -67,3 +67,16 @@ Publishing this package we are committing ourselves to the following code qualit
 - ✅ **Tests** as documentation and usage examples
 - 📖 **Well documented ReadMe** showing how to install and use
 - ⚖️ **License favoring Open Source** and collaboration
+
+## 🔀 Related resources
+
+- [🔦 Linting en JavaScript y TypeScript](https://pro.codely.com/library/linting-en-javascript-y-typescript-188432/446893/about/): Used as a template to bootstrap this plugin
+- [Codely's ESLint + Prettier configuration](https://github.com/CodelyTV/eslint-config-codely): Opinionated linting configuration considering modern TypeScript best practices and providing consistency to your import statements. Valid for your JavaScript or TypeScript projects
+
+Opinionated skeletons ready for different purposes:
+
+- [✨🌱 JavaScript Basic Skeleton](https://github.com/CodelyTV/javascript-basic-skeleton)
+- [🔷🌱 TypeScript Basic Skeleton](https://github.com/CodelyTV/typescript-basic-skeleton)
+- [🔷🕸️ TypeScript Web Skeleton](https://github.com/CodelyTV/typescript-web-skeleton)
+- [🔷🌍 TypeScript API Skeleton](https://github.com/CodelyTV/typescript-api-skeleton)
+- [🔷✨ TypeScript DDD Skeleton](https://github.com/CodelyTV/typescript-ddd-skeleton)
